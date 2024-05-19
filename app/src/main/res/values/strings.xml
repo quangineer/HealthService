@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">HealthCare Services</string>
+    <string name="newRegister">
+    New User ? Register <u>here</u>.
+    </string>
+    <string name="alreadyRegister">
+    Already have an account? Sign in <u>here</u>.
+    </string>
+</resources>
