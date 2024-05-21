@@ -16,8 +16,9 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String qry1 = "create table users(username text, email text,password text)";
-        SQLiteDatabase sqLiteDatabase = null;
-        sqLiteDatabase.execSQL(qry1);
+//        SQLiteDatabase sqLiteDatabase = null;
+//        sqLiteDatabase.execSQL(qry1);
+        db.execSQL(qry1);
     }
 
     @Override
@@ -41,7 +42,7 @@ public class Database extends SQLiteOpenHelper {
         str[1] = password;
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("select * from users where username=? and password=?",str);
-        if(c.moveToFirst()){
+        if(c.moveToFirst()){  //move to First = if there is some login record in db
             result=1;  //the user exists;
         }
         return result;
