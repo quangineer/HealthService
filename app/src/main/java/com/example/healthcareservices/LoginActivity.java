@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     if(db.login(username,password)==1){
                         Toast.makeText(getApplicationContext(),"Login Success",Toast.LENGTH_SHORT).show();
+                        //store to data memory when login
                         SharedPreferences sharedPreferences = getSharedPreferences("shared_preferences", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("username",username);
