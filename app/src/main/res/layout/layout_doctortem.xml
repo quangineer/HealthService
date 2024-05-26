@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+    <TextView
+        android:id="@+id/txtViewDoctorId"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="0.1"
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/txtViewDoctorActiveDate"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="0.2"
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/txtViewDoctorName"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="0.2"
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/txtViewDoctorAddress"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="0.2"
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/txtViewDoctorPhone"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="0.2"
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/txtViewDoctorPrice"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="0.2"
+        android:gravity="center_horizontal" />
+</LinearLayout>
