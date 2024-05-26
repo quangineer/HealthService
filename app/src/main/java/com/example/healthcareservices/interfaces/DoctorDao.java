@@ -1,5 +1,6 @@
 package com.example.healthcareservices.interfaces;
 
+import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -7,7 +8,7 @@ import androidx.room.Query;
 import com.example.healthcareservices.model.doctor;
 
 import java.util.List;
-
+@Dao
 public interface DoctorDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void  insertDoctors(doctor...doctors);
