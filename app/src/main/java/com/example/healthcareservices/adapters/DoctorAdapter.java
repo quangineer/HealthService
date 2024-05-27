@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.healthcareservices.databinding.LayoutDoctortemBinding;
+import com.example.healthcareservices.databinding.LayoutDoctoritemBinding;
 import com.example.healthcareservices.model.doctor;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
     @NonNull
     @Override
     public DoctorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutDoctortemBinding binding = LayoutDoctortemBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
+        LayoutDoctoritemBinding binding = LayoutDoctoritemBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
         DoctorViewHolder holder = new DoctorViewHolder(binding.getRoot(),binding);
         return holder;
     }
@@ -31,7 +31,9 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
     public void onBindViewHolder(@NonNull DoctorViewHolder holder, int position) {
         doctor target = AdapterDoctorList.get(position);
 
-        holder.binding.txtViewDoctorId.setText(target.getDoctorId());
+//        holder.binding.txtViewDoctorId.setText(target.getDoctorId());
+//        holder.binding.txtViewDoctorId.setText("" + target.getDoctorId());
+        holder.binding.txtViewDoctorId.setText(Integer.toString(target.getDoctorId()));
         holder.binding.txtViewDoctorActiveDate.setText(target.getDoctorActiveDate());
         holder.binding.txtViewDoctorName.setText(target.getDoctorName());
         holder.binding.txtViewDoctorAddress.setText(target.getDoctorAddress());
@@ -46,13 +48,13 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
     }
 
     public class DoctorViewHolder extends RecyclerView.ViewHolder{
-        LayoutDoctortemBinding binding;
+        LayoutDoctoritemBinding binding;
 
         public DoctorViewHolder(@NonNull View itemView) {
             super(itemView);
         }
 
-        public DoctorViewHolder(@NonNull View itemView, LayoutDoctortemBinding binding){
+        public DoctorViewHolder(@NonNull View itemView, LayoutDoctoritemBinding binding){
             super(itemView);
             this.binding = binding;
 

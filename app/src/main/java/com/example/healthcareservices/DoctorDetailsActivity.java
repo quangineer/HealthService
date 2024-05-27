@@ -41,31 +41,31 @@ public class DoctorDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_details);
 
-        tv = findViewById(R.id.textViewDDTitle);
-        btn = findViewById(R.id.buttonDDBack);
-        Intent it = getIntent();
-        String title = it.getStringExtra("title");
-        tv.setText(title);
 
         binding = ActivityDoctorDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         doctorList = readFamilyPhysiciansData();
-
         cdb = Room.databaseBuilder(getApplicationContext(),DoctorDatabase.class,"doctors.db").build();
-
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.execute(new Runnable() {
             @Override
             public void run() {
                 cdb.doctorDao().insertDoctorsFromList(doctorList);
                 List<doctor> DoctorsDB = cdb.doctorDao().GetAllDoctors();
-                Log.d("Check1",DoctorsDB.size() + " items");
             }
         });
 
-        binding.recyclerViewDoctor.setLayoutManager(new LinearLayoutManager(this));
+        tv = findViewById(R.id.textViewDDTitle);
+        btn = findViewById(R.id.buttonDDBack);
+        Intent it = getIntent();
+        String title = it.getStringExtra("title");
+        tv.setText(title);
+
         binding.recyclerViewDoctor.setAdapter(new DoctorAdapter(doctorList));
+        binding.recyclerViewDoctor.setLayoutManager(new LinearLayoutManager(this));
+
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
