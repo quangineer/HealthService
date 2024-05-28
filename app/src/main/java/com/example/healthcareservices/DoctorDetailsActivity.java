@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.healthcareservices.adapters.DoctorAdapter;
@@ -23,15 +25,27 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class DoctorDetailsActivity extends AppCompatActivity {
-
+    private String[][] list1 = {
+            {"Doctor Name: Ngwen Japan","Hospital Address: Burnaby","Exp: 10 yrs","Phone:911","110"},
+            {"Doctor Name: Gabriel Nah","Hospital Address: Vancouver","Exp: 13 yrs","Phone:911","120"},
+            {"Doctor Name: Trab Niko","Hospital Address: New West","Exp: 20 yrs","Phone:911","100"},
+            {"Doctor Name: Vqa Asg","Hospital Address: Richmond","Exp: 13 yrs","Phone:911","115"},
+            {"Doctor Name: Hikori Tok","Hospital Address: Surrey","Exp: 8 yrs","Phone:911","200"},
+    };
     TextView tv;
     Button btn;
 
+    //create an empty list to store the selected type of doctor:
+    String[][] doctor_chosen = {};
+    HashMap<String,String> item;
+    ArrayList carsurList;
+    SimpleAdapter simpleAdapter;
     ActivityDoctorDetailsBinding binding;
     List<doctor> doctorList = new ArrayList<>();
     DoctorDatabase cdb;
@@ -45,7 +59,7 @@ public class DoctorDetailsActivity extends AppCompatActivity {
         binding = ActivityDoctorDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        doctorList = readFamilyPhysiciansData();
+        doctorList = readDoctorDatabase();
         cdb = Room.databaseBuilder(getApplicationContext(),DoctorDatabase.class,"doctors.db").build();
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.execute(new Runnable() {
@@ -62,10 +76,29 @@ public class DoctorDetailsActivity extends AppCompatActivity {
         String title = it.getStringExtra("title");
         tv.setText(title);
 
-        binding.recyclerViewDoctor.setAdapter(new DoctorAdapter(doctorList));
-        binding.recyclerViewDoctor.setLayoutManager(new LinearLayoutManager(this));
+        if(title.compareTo("Family Physicians")==0 || title.compareTo("Dietician")==0 || title.compareTo("Dentist")==0){
+            binding.recyclerViewDoctor.setAdapter(new DoctorAdapter(doctorList));
+            binding.recyclerViewDoctor.setLayoutManager(new LinearLayoutManager(this));
+        } else {
+            doctor_chosen = list1;
 
-
+            carsurList = new ArrayList();
+            for(int i=0;i<doctor_chosen.length;i++){
+                item = new HashMap<String,String>();
+                item.put("line1",doctor_chosen[i][0]);
+                item.put("line2",doctor_chosen[i][1]);
+                item.put("line3",doctor_chosen[i][2]);
+                item.put("line4",doctor_chosen[i][3]);
+                item.put("line5","Charge: "+"CAD $"+doctor_chosen[i][4]);
+                carsurList.add(item);
+            }
+            simpleAdapter = new SimpleAdapter(this,carsurList,
+                    R.layout.multi_lines,
+                    new String[]{"line1","line2","line3","line4","line5"},
+                    new int[]{R.id.line_a,R.id.line_b,R.id.line_c,R.id.line_d,R.id.line_e});
+            ListView lst = findViewById(R.id.listViewDD);
+            lst.setAdapter(simpleAdapter);
+        }
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +110,7 @@ public class DoctorDetailsActivity extends AppCompatActivity {
 
     //reading database file for Family Physicians:
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private List<doctor> readFamilyPhysiciansData(){
+    private List<doctor> readDoctorDatabase(){
         List<doctor> doctorList1 = new ArrayList<>();
         InputStream inputStream = getResources().openRawResource(R.raw.familydoctors);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));

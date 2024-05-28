@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,11 +31,11 @@ public class LoginActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,HomeActivity.class));
                 String username = edUsername.getText().toString();
                 String password = edPassword.getText().toString();
                 Database db = new Database(getApplicationContext(),"healthcare",null,1);
                 if(username.length()==0 || password.length() ==0){
+                    Log.d("Check1","recognized zero");
                     Toast.makeText(getApplicationContext(),"Please fill the details",Toast.LENGTH_SHORT).show();
                 } else {
                     if(db.login(username,password)==1){

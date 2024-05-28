@@ -8,7 +8,7 @@
         android:id="@+id/txtViewDoctorId"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_weight="0.1"
+        android:layout_weight="0.05"
         android:gravity="center_horizontal"
         android:textColor="@color/colorwhite" />
 
@@ -16,7 +16,7 @@
         android:id="@+id/txtViewDoctorActiveDate"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_weight="0.2"
+        android:layout_weight="0.225"
         android:gravity="center_horizontal"
         android:textColor="@color/colorwhite" />
 
@@ -40,7 +40,7 @@
         android:id="@+id/txtViewDoctorPhone"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_weight="0.2"
+        android:layout_weight="0.225"
         android:gravity="center_horizontal"
         android:textColor="@color/colorwhite" />
 
@@ -48,7 +48,7 @@
         android:id="@+id/txtViewDoctorPrice"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_weight="0.2"
+        android:layout_weight="0.1"
         android:gravity="center_horizontal"
         android:textColor="@color/colorwhite" />
 </LinearLayout>
