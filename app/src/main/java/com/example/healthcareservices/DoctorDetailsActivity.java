@@ -106,10 +106,10 @@ public class DoctorDetailsActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Intent it = new Intent(DoctorDetailsActivity.this,BookAppointmentActivity.class);
                     it.putExtra("text1",title);
-                    it.putExtra("text2",doctor_chosen[i][0]);
-                    it.putExtra("text3",doctor_chosen[i][1]);
-                    it.putExtra("text4",doctor_chosen[i][3]);
-                    it.putExtra("text5",doctor_chosen[i][4]);
+                    it.putExtra("text2",doctor_chosen[position][0]);
+                    it.putExtra("text3",doctor_chosen[position][1]);
+                    it.putExtra("text4",doctor_chosen[position][3]);
+                    it.putExtra("text5",doctor_chosen[position][4]);
                     startActivity(it);
                 }
             });
