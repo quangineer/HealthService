@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -92,12 +93,26 @@ public class DoctorDetailsActivity extends AppCompatActivity {
                 item.put("line5","Charge: "+"CAD $"+doctor_chosen[i][4]);
                 carsurList.add(item);
             }
+
             simpleAdapter = new SimpleAdapter(this,carsurList,
                     R.layout.multi_lines,
                     new String[]{"line1","line2","line3","line4","line5"},
                     new int[]{R.id.line_a,R.id.line_b,R.id.line_c,R.id.line_d,R.id.line_e});
             ListView lst = findViewById(R.id.listViewDD);
             lst.setAdapter(simpleAdapter);
+
+            lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent it = new Intent(DoctorDetailsActivity.this,BookAppointmentActivity.class);
+                    it.putExtra("text1",title);
+                    it.putExtra("text2",doctor_chosen[i][0]);
+                    it.putExtra("text3",doctor_chosen[i][1]);
+                    it.putExtra("text4",doctor_chosen[i][3]);
+                    it.putExtra("text5",doctor_chosen[i][4]);
+                    startActivity(it);
+                }
+            });
         }
 
         btn.setOnClickListener(new View.OnClickListener() {
